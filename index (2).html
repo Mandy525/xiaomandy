@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>唐晓曼 - 个人介绍</title>
+    <style>
+        /* ========== 全局重置与基础样式 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --primary-light: #8B83FF;
+            --secondary: #FF6584;
+            --accent: #43E97B;
+            --dark: #2D3436;
+            --gray: #636E72;
+            --light-gray: #DFE6E9;
+            --white: #FFFFFF;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+
+        /* ========== 导航栏 ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--dark);
+        }
+
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== 首屏 Hero ========== */
+        .hero {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1100px;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text {
+            flex: 1;
+            color: var(--white);
+        }
+
+        .hero-text .greeting {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.85;
+            margin-top: 0.5rem;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 450px;
+        }
+
+        .hero-text .cta-btn {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-text .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-avatar {
+            flex-shrink: 0;
+        }
+
+        .hero-avatar img {
+            width: 320px;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ========== 通用 Section ========== */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title .underline {
+            width: 60px;
+            height: 4px;
+            background: var(--bg-gradient);
+            border-radius: 2px;
+            margin: 0.8rem auto 0;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            margin-top: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        /* ========== 关于我 ========== */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image .img-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .about-image .img-wrapper img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image .decorative {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            width: 120px;
+            height: 120px;
+            background: var(--bg-gradient);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .about-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .about-info p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-card .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-card .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* ========== 爱好 ========== */
+        .hobbies {
+            background: #f8f9fa;
+        }
+
+        /* 网球照片画廊 */
+        .tennis-gallery-section {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+        }
+
+        .tennis-gallery-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tennis-gallery-header .emoji {
+            font-size: 2.5rem;
+        }
+
+        .tennis-gallery-header h3 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .tennis-gallery-header p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .tennis-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto;
+            gap: 0.8rem;
+        }
+
+        .tennis-gallery .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .tennis-gallery .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        .tennis-gallery .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .tennis-gallery .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .tennis-gallery .gallery-item .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tennis-gallery .gallery-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .tennis-gallery .gallery-item .photo-overlay span {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* 第一张大图横跨2列2行 */
+        .tennis-gallery .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .tennis-gallery .gallery-item:nth-child(1) img {
+            height: 100%;
+            min-height: 320px;
+        }
+
+        .tennis-gallery .gallery-item:not(:nth-child(1)) img {
+            height: 155px;
+        }
+
+        /* 分隔线 */
+        .hobbies-divider {
+            max-width: 1100px;
+            margin: 3rem auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .hobbies-divider .line {
+            flex: 1;
+            height: 1px;
+            background: var(--light-gray);
+        }
+
+        .hobbies-divider span {
+            color: var(--gray);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* 其他爱好卡片 */
+        .other-hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hobby-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .hobby-card .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hobby-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .hobby-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .hobby-card .card-image .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+        }
+
+        .hobby-card .card-image .icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .hobby-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .hobby-card .card-body h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .hobby-card .card-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 灯箱 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .lightbox .close-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .lightbox .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox .nav-prev {
+            left: 2rem;
+        }
+
+        .lightbox .nav-next {
+            right: 2rem;
+        }
+
+        .lightbox .counter {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ========== 教育背景 ========== */
+        .education {
+            background: var(--white);
+        }
+
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-item .dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary);
+            z-index: 1;
+        }
+
+        .timeline-item .content {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .timeline-item .content:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .timeline-item .content .date {
+            display: inline-block;
+            padding: 0.25rem 0.8rem;
+            background: var(--bg-gradient);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-item .content h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+
+        .timeline-item .content .school {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ========== 技能 ========== */
+        .skills {
+            background: #f8f9fa;
+        }
+
+        .skills-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .skill-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-bar .name {
+            width: 120px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .skill-bar .bar {
+            flex: 1;
+            height: 10px;
+            background: var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-bar .bar .fill {
+            height: 100%;
+            border-radius: 5px;
+            background: var(--bg-gradient);
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .skill-bar .bar .fill.animated {
+            /* width set via inline style */
+        }
+
+        .skill-bar .percent {
+            width: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* ========== 页脚 ========== */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        footer .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        footer .social-links a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        footer .social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        footer .copyright {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        /* ========== 动画 ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== 回到顶部 ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--bg-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.4);
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-avatar img {
+                width: 220px;
+                height: 290px;
+            }
+
+            .hero-text .tagline {
+                max-width: 100%;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .tennis-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tennis-gallery .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .tennis-gallery .gallery-item:nth-child(1) img {
+                min-height: 200px;
+            }
+
+            .tennis-gallery .gallery-item:not(:nth-child(1)) img {
+                height: 140px;
+            }
+
+            .other-hobbies-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 3.5rem;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item .dot {
+                left: 20px;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-bar .name {
+                width: 80px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav id="navbar">
+        <a href="#" class="logo">晓曼</a>
+        <ul class="nav-links">
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#hobbies">兴趣爱好</a></li>
+            <li><a href="#education">教育背景</a></li>
+            <li><a href="#skills">专业技能</a></li>
+        </ul>
+    </nav>
+
+    <!-- 首屏 -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="greeting">👋 你好，欢迎来到我的主页</p>
+                <h1>
+                    我是唐晓曼
+                    <span>广东科学技术职业学院 · 商务数据分析与应用</span>
+                </h1>
+                <p class="tagline">
+                    来自广东茂名，热爱生活、热爱学习。用数据洞察世界，用镜头记录美好，用运动释放活力。
+                </p>
+                <a href="#about" class="cta-btn">了解更多 ↓</a>
+            </div>
+            <div class="hero-avatar">
+                <img src="assets/avatar.jpg" alt="唐晓曼">
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="about" id="about">
+        <div class="section-title fade-in">
+            <h2>关于我</h2>
+            <div class="underline"></div>
+            <p>一个热爱生活、不断成长的女孩</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <div class="img-wrapper">
+                    <img src="assets/avatar.jpg" alt="唐晓曼">
+                </div>
+                <div class="decorative"></div>
+            </div>
+            <div class="about-info fade-in">
+                <h3>你好呀！👋</h3>
+                <p>
+                    我是唐晓曼，来自美丽的广东省茂名市。目前就读于广东科学技术职业学院商学院，
+                    主修商务数据分析与应用专业。我性格开朗、积极向上，善于与人沟通交流。
+                    在学习之余，我喜欢通过运动和摄影来丰富自己的生活，也热爱探索各种美食。
+                </p>
+                <p>
+                    我相信数据的力量，也相信生活中处处充满美好。希望能在数据分析领域不断精进，
+                    用专业技能创造价值，同时享受生活的每一刻。
+                </p>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="label">姓名</div>
+                        <div class="value">唐晓曼</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">家乡</div>
+                        <div class="value">广东茂名</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">学院</div>
+                        <div class="value">商学院</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="label">专业</div>
+                        <div class="value">商务数据分析与应用</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <section class="hobbies" id="hobbies">
+        <div class="section-title fade-in">
+            <h2>兴趣爱好</h2>
+            <div class="underline"></div>
+            <p>生活不只有学习，还有诗和远方</p>
+        </div>
+        <!-- 网球照片画廊 -->
+        <div class="tennis-gallery-section fade-in">
+            <div class="tennis-gallery-header">
+                <span class="emoji">🎾</span>
+                <h3>网球</h3>
+            </div>
+            <p>热爱网球运动，享受在球场上挥洒汗水的快乐。网球不仅锻炼了我的体魄，更培养了我的专注力和团队协作精神。每一次挥拍都是对自我的挑战与超越。</p>
+            <div class="tennis-gallery">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="assets/tennis1.jpg" alt="网球自拍">
+                    <div class="photo-overlay"><span>📸 球场自拍</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="assets/tennis2.jpg" alt="休息时刻">
+                    <div class="photo-overlay"><span>💧 休息时刻</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="assets/tennis3.jpg" alt="黄昏练球">
+                    <div class="photo-overlay"><span>🌅 黄昏练球</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="assets/tennis4.jpg" alt="球拍与手">
+                    <div class="photo-overlay"><span>✌️ 球拍与手</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="assets/tennis5.jpg" alt="阳光球场">
+                    <div class="photo-overlay"><span>☀️ 阳光球场</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="assets/tennis6.jpg" alt="球场全景">
+                    <div class="photo-overlay"><span>🏟️ 球场全景</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="assets/tennis7.jpg" alt="夜场网球">
+                    <div class="photo-overlay"><span>🌙 夜场网球</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分隔线 -->
+        <div class="hobbies-divider fade-in">
+            <div class="line"></div>
+            <span>摄影</span>
+            <div class="line"></div>
+        </div>
+
+        <!-- 摄影照片画廊 -->
+        <div class="tennis-gallery-section fade-in">
+            <div class="tennis-gallery-header">
+                <span class="emoji">📷</span>
+                <h3>镜头下的世界</h3>
+            </div>
+            <p>喜欢用镜头捕捉生活中的美好瞬间。无论是海边日落、城市建筑、旅行风景，还是朋友间的欢声笑语，都值得被记录。摄影让我学会了用心去观察这个世界。</p>
+            <div class="tennis-gallery">
+                <div class="gallery-item" onclick="openLightbox(0, 'photo')">
+                    <img src="assets/photo1.jpg" alt="海滩冲浪">
+                    <div class="photo-overlay"><span>🏖️ 海滩冲浪</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1, 'photo')">
+                    <img src="assets/photo2.jpg" alt="碧海蓝天">
+                    <div class="photo-overlay"><span>🌊 碧海蓝天</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2, 'photo')">
+                    <img src="assets/photo3.jpg" alt="花间人像">
+                    <div class="photo-overlay"><span>🌸 花间人像</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3, 'photo')">
+                    <img src="assets/photo4.jpg" alt="钟楼夜景">
+                    <div class="photo-overlay"><span>🏛️ 钟楼夜景</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4, 'photo')">
+                    <img src="assets/photo5.jpg" alt="交通枢纽">
+                    <div class="photo-overlay"><span>🚌 交通枢纽</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5, 'photo')">
+                    <img src="assets/photo6.jpg" alt="威尼斯风情">
+                    <div class="photo-overlay"><span>🇮🇹 威尼斯风情</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6, 'photo')">
+                    <img src="assets/photo7.jpg" alt="骑行时光">
+                    <div class="photo-overlay"><span>🚴 骑行时光</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7, 'photo')">
+                    <img src="assets/photo8.jpg" alt="橘子洲头">
+                    <div class="photo-overlay"><span>🍊 橘子洲头</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8, 'photo')">
+                    <img src="assets/photo9.jpg" alt="露营野餐">
+                    <div class="photo-overlay"><span>⛺ 露营野餐</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(9, 'photo')">
+                    <img src="assets/photo10.jpg" alt="公园漫步">
+                    <div class="photo-overlay"><span>🌳 公园漫步</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(10, 'photo')">
+                    <img src="assets/photo11.jpg" alt="运动少女">
+                    <div class="photo-overlay"><span>💪 运动少女</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(11, 'photo')">
+                    <img src="assets/photo12.jpg" alt="壁画前">
+                    <div class="photo-overlay"><span>🎨 壁画前</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(12, 'photo')">
+                    <img src="assets/photo13.jpg" alt="日落海滩">
+                    <div class="photo-overlay"><span>🌅 日落海滩</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(13, 'photo')">
+                    <img src="assets/photo14.jpg" alt="新年福字">
+                    <div class="photo-overlay"><span>🧧 新年福字</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(14, 'photo')">
+                    <img src="assets/photo15.jpg" alt="新年祝福">
+                    <div class="photo-overlay"><span>🎊 新年祝福</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(15, 'photo')">
+                    <img src="assets/photo16.jpg" alt="公园自拍">
+                    <div class="photo-overlay"><span>🌿 公园自拍</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(16, 'photo')">
+                    <img src="assets/photo17.jpg" alt="室内随拍">
+                    <div class="photo-overlay"><span>📸 室内随拍</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(17, 'photo')">
+                    <img src="assets/photo18.jpg" alt="海边远眺">
+                    <div class="photo-overlay"><span>👁️ 海边远眺</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(18, 'photo')">
+                    <img src="assets/photo19.jpg" alt="回眸一笑">
+                    <div class="photo-overlay"><span>✨ 回眸一笑</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分隔线 -->
+        <div class="hobbies-divider fade-in">
+            <div class="line"></div>
+            <span>美食</span>
+            <div class="line"></div>
+        </div>
+
+        <!-- 美食卡片 -->
+        <div class="other-hobbies-grid" style="max-width:600px;">
+            <div class="hobby-card fade-in">
+                <div class="card-image">
+                    <img src="assets/food.jpg" alt="美食">
+                    <div class="overlay"></div>
+                    <div class="icon">🍜</div>
+                </div>
+                <div class="card-body">
+                    <h3>美食</h3>
+                    <p>作为一个来自茂名的广东女孩，对美食有着天然的热爱。从家乡的化州糖水、茂名海鲜，到各地的特色小吃，探索美食是我生活中的一大乐趣，也是了解不同文化的方式。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育背景 -->
+    <section class="education" id="education">
+        <div class="section-title fade-in">
+            <h2>教育背景</h2>
+            <div class="underline"></div>
+            <p>学无止境，砥砺前行</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="dot"></div>
+                <div class="content">
+                    <span class="date">在读</span>
+                    <h3>商务数据分析与应用</h3>
+                    <div class="school">广东科学技术职业学院 · 商学院</div>
+                    <p>系统学习商务数据分析的核心知识，包括数据采集、数据清洗、数据可视化、统计分析及商业智能等。掌握多种数据分析工具和方法，培养数据驱动的商业思维。</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="dot"></div>
+                <div class="content">
+                    <span class="date">成长足迹</span>
+                    <h3>广东省茂名市</h3>
+                    <div class="school">家乡 · 梦想起航的地方</div>
+                    <p>在美丽的茂名市长大，这座城市赋予了我温暖的性格和积极向上的生活态度。茂名的水果、海鲜和淳朴的民风，是我永远的牵挂和力量来源。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专业技能 -->
+    <section class="skills" id="skills">
+        <div class="section-title fade-in">
+            <h2>专业技能</h2>
+            <div class="underline"></div>
+            <p>持续学习，不断进步</p>
+        </div>
+        <div class="skills-container fade-in">
+            <div class="skill-category">
+                <h3>📊 数据分析</h3>
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <span class="name">Excel</span>
+                        <div class="bar"><div class="fill" data-width="90%"></div></div>
+                        <span class="percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">Python</span>
+                        <div class="bar"><div class="fill" data-width="75%"></div></div>
+                        <span class="percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">SQL</span>
+                        <div class="bar"><div class="fill" data-width="80%"></div></div>
+                        <span class="percent">80%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>📈 数据可视化</h3>
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <span class="name">Tableau</span>
+                        <div class="bar"><div class="fill" data-width="70%"></div></div>
+                        <span class="percent">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">ECharts</span>
+                        <div class="bar"><div class="fill" data-width="72%"></div></div>
+                        <span class="percent">72%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">PPT汇报</span>
+                        <div class="bar"><div class="fill" data-width="85%"></div></div>
+                        <span class="percent">85%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>🛠 综合能力</h3>
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <span class="name">商务沟通</span>
+                        <div class="bar"><div class="fill" data-width="88%"></div></div>
+                        <span class="percent">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">团队协作</span>
+                        <div class="bar"><div class="fill" data-width="85%"></div></div>
+                        <span class="percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <span class="name">摄影后期</span>
+                        <div class="bar"><div class="fill" data-width="78%"></div></div>
+                        <span class="percent">78%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">唐晓曼</div>
+            <p>广东科学技术职业学院 · 商学院 · 商务数据分析与应用</p>
+            <div class="social-links">
+                <a href="#" title="微信">💬</a>
+                <a href="#" title="微博">📱</a>
+                <a href="#" title="邮箱">📧</a>
+                <a href="#" title="小红书">📕</a>
+            </div>
+            <div class="copyright">
+                © 2026 唐晓曼 · 用心生活，用数据说话
+            </div>
+        </div>
+    </footer>
+
+    <!-- 灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <div class="close-btn" onclick="closeLightbox()">✕</div>
+        <div class="nav-btn nav-prev" onclick="navigateLightbox(-1)">‹</div>
+        <img id="lightbox-img" src="" alt="照片预览">
+        <div class="nav-btn nav-next" onclick="navigateLightbox(1)">›</div>
+        <div class="counter" id="lightbox-counter"></div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // 导航栏背景
+            if (scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // 回到顶部按钮
+            if (scrollY > 500) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // 回到顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 滚动渐入动画
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // 技能条动画
+        const skillFills = document.querySelectorAll('.skill-bar .fill');
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fill = entry.target;
+                    const width = fill.getAttribute('data-width');
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 300);
+                    skillObserver.unobserve(fill);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        skillFills.forEach(fill => skillObserver.observe(fill));
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========== 灯箱功能 ==========
+        const galleries = {
+            tennis: {
+                photos: [
+                    'assets/tennis1.jpg', 'assets/tennis2.jpg', 'assets/tennis3.jpg',
+                    'assets/tennis4.jpg', 'assets/tennis5.jpg', 'assets/tennis6.jpg',
+                    'assets/tennis7.jpg'
+                ],
+                labels: [
+                    '📸 球场自拍', '💧 休息时刻', '🌅 黄昏练球',
+                    '✌️ 球拍与手', '☀️ 阳光球场', '🏟️ 球场全景',
+                    '🌙 夜场网球'
+                ]
+            },
+            photo: {
+                photos: [
+                    'assets/photo1.jpg', 'assets/photo2.jpg', 'assets/photo3.jpg',
+                    'assets/photo4.jpg', 'assets/photo5.jpg', 'assets/photo6.jpg',
+                    'assets/photo7.jpg', 'assets/photo8.jpg', 'assets/photo9.jpg',
+                    'assets/photo10.jpg', 'assets/photo11.jpg', 'assets/photo12.jpg',
+                    'assets/photo13.jpg', 'assets/photo14.jpg', 'assets/photo15.jpg',
+                    'assets/photo16.jpg', 'assets/photo17.jpg', 'assets/photo18.jpg',
+                    'assets/photo19.jpg'
+                ],
+                labels: [
+                    '🏖️ 海滩冲浪', '🌊 碧海蓝天', '🌸 花间人像',
+                    '🏛️ 钟楼夜景', '🚌 交通枢纽', '🇮🇹 威尼斯风情',
+                    '🚴 骑行时光', '🍊 橘子洲头', '⛺ 露营野餐',
+                    '🌳 公园漫步', '💪 运动少女', '🎨 壁画前',
+                    '🌅 日落海滩', '🧧 新年福字', '🎊 新年祝福',
+                    '🌿 公园自拍', '📸 室内随拍', '👁️ 海边远眺',
+                    '✨ 回眸一笑'
+                ]
+            }
+        };
+        let currentGallery = 'tennis';
+        let currentPhotoIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        function openLightbox(index, gallery) {
+            currentGallery = gallery || 'tennis';
+            currentPhotoIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            event.stopPropagation();
+            const g = galleries[currentGallery];
+            currentPhotoIndex = (currentPhotoIndex + direction + g.photos.length) % g.photos.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            const g = galleries[currentGallery];
+            lightboxImg.src = g.photos[currentPhotoIndex];
+            lightboxCounter.textContent = `${g.labels[currentPhotoIndex]}  ${currentPhotoIndex + 1} / ${g.photos.length}`;
+        }
+
+        // 点击灯箱背景关闭
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // 键盘导航
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+    </script>
+
+</body>
+</html>
